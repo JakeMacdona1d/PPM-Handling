@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "encodedecode.h": "c",
+        "string.h": "c",
+        "ppm.h": "c"
+    }
+}
