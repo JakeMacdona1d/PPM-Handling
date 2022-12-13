@@ -1,11 +1,3 @@
-/*************************
-* Thomas Finnegan
-* Jake Macdonald
-* CPSC 2310 Section 003
-* Emails: gtfinne@clemson.edu 
-          jpmacdo@clemson.edu
-*************************/
-
 #ifndef _STRING_H_
 #define _STRING_H_
 #include "ppm.h"
@@ -25,7 +17,6 @@ void resizeString(String *text);
 char *getString(String *text);
 
 void concatString(String *text, char *input);
-
 
 char getStringChar(String *text, int pos);
 

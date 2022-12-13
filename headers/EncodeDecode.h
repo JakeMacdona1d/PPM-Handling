@@ -1,11 +1,3 @@
-/*************************
-* Thomas Finnegan
-* Jake Macdonald
-* CPSC 2310 Section 003
-* Emails: gtfinne@clemson.edu 
-          jpmacdo@clemson.edu
-*************************/
-
 #ifndef _ENCODEDECODE_H_
 #define _ENCODEDECODE_H_
 

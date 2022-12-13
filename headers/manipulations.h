@@ -1,22 +1,10 @@
-/*************************
-* Thomas Finnegan
-* Jake Macdonald
-* CPSC 2310 Section 003
-* Emails: gtfinne@clemson.edu 
-          jpmacdo@clemson.edu
-*************************/
-
-#ifndef _ENCODEDECODE_H_
-#define _ENCODEDECODE_H_
+#ifndef _MANIPULATIONS_H_
+#define _MANIPULATIONS_H_
 
 #include "ppm.h"
 
-char *chartobin (char c);
+void changeColorImage(Image *img, Image *neg);
 
-void encode(Image *img);
-
-int Pow(int b, int e);
-
-char *decode(Image *img);
+void resizeImage(Image *input, Image *output);
 
 #endif

@@ -1,0 +1,1 @@
+This is a compilation of a few projects from my Clemson University Computer Organization Course, Fall 2022

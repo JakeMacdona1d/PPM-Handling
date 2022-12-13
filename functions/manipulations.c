@@ -1,12 +1,15 @@
-#include "EncodeDecode.h"
+#include "../headers/ppm.h"
 
-void changeColorImage(Image *img)
+void changeColorImage(Image *img, Image *neg)
 {
-    for(int i = 0; i < img->head.height; i++){
+    neg->head = img->head;
+    neg->pixels = malloc(sizeof(Pixel*) * img->head.height);
+    for (int i = 0; i < img->head.height; i++) {
+        neg->pixels[i] = malloc(sizeof(Pixel) * img->head.width);
         for (int j = 0; j < img->head.width; j++) {
-            img->pixels[j][i].red = img->head.maxVal - img->pixels[j][i].red;
-            img->pixels[j][i].green = img->head.maxVal - img->pixels[j][i].green;
-            img->pixels[j][i].blue = img->head.maxVal - img->pixels[j][i].blue;
+            neg->pixels[i][j].red = img->head.maxVal - img->pixels[i][j].red;
+            neg->pixels[i][j].green = img->head.maxVal - img->pixels[i][j].green;
+            neg->pixels[i][j].blue = img->head.maxVal - img->pixels[i][j].blue;
         }
     }
 }
@@ -40,6 +43,8 @@ void resizeImage(Image *input, Image *output)
         printf("Please enter an acceptable change: ");
         scanf("%d", &userHeight);
     }
+
+    output->head.height = input->head.height + userHeight;
 
     output->pixels = malloc(output->head.height * sizeof(Pixel*));
     for (int i = 0; output->head.height > i; i++ ) {

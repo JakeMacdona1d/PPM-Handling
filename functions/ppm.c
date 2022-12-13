@@ -1,12 +1,4 @@
-/*************************
-* Thomas Finnegan
-* Jake Macdonald
-* CPSC 2310 Section 003
-* Emails: gtfinne@clemson.edu 
-          jpmacdo@clemson.edu
-*************************/
-
-#include "ppm.h"
+#include "../headers/ppm.h"
 
 
 int headVal(int *i, char *arr)
@@ -109,4 +101,11 @@ void writeImage(FILE *fp, Image *img)
     for (int i = 0; img->head.height > i; i++) {
         fwrite(img->pixels[i], sizeof(Pixel), img->head.width, fp);
     }
+}
+
+void freeImage (Image *img) {
+    for (int i = 0; img->head.height > i; i++)
+        free(img->pixels[i]);
+    free(img->pixels);
+    free(img);
 }

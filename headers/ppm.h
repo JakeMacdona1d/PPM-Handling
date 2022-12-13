@@ -1,11 +1,3 @@
-/*************************
-* Thomas Finnegan
-* Jake Macdonald
-* CPSC 2310 Section 003
-* Emails: gtfinne@clemson.edu 
-          jpmacdo@clemson.edu
-*************************/
-
 #ifndef _PPM_H_
 #define _PPM_H_
 
@@ -13,8 +5,6 @@
 #include <assert.h>
 #include <string.h>
 #include <stdlib.h>
-// #include <math.h>
-
 
 // struct to store ppm header information
 typedef struct HeaderInfo {
@@ -60,5 +50,13 @@ Image *readImage(FILE *fp, HeaderInfo head);
 * output ppm.
 */
 void writeImage(FILE *fp, Image *img);
+
+
+/*
+* Parameters: Image* - pointer to input image
+* Return:     void - none
+* Frees allocated data for instance of Image
+*/
+void freeImage(Image* img);
 
 #endif

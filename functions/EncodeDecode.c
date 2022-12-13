@@ -1,14 +1,40 @@
-/*************************
-* Thomas Finnegan
-* Jake Macdonald
-* CPSC 2310 Section 003
-* Emails: gtfinne@clemson.edu 
-          jpmacdo@clemson.edu
-*************************/
-
 #include "../headers/EncodeDecode.h"
 #include "../headers/string.h"
 
+
+int Pow(int b, int e) {
+    if (e == 0) return 1;
+    int output = b;
+
+    for (int i = 0; e - 1 > i; i++) 
+        output *= b;
+    
+    return output;
+}
+
+char *decode(Image *img) {
+    INIT_STRING(text);
+    int pos = 0;
+
+    short value, c;
+    while (1) {
+        value = 0;
+        // This gets value at each color channel
+        for (int i = 0; 9 > i; i++) {            
+            c = *(&(img->pixels[((pos + i) / 3) / img->head.width]
+                [((pos + i) / 3) % img->head.width].red) + (i % 3)) % 10;
+            if (c != 0) {
+                value += (Pow(2, 9 - i -1));
+                if (c > 1 ) value += 252;
+            }
+        }
+        pos += 9;
+        if (value > 251) break;
+       appendString(&text, (char)(value));
+    }
+
+    return getString(&text);
+}
 
 char *chartobin (char c)
 {
@@ -29,7 +55,6 @@ char *chartobin (char c)
 
 void encode (Image *img)
 {
-    // char *userInput = malloc(sizeof(char) * inputLength);
     int choice = 0;
 
     INIT_STRING(input);
@@ -45,7 +70,6 @@ void encode (Image *img)
     while (choice != 1 && choice != 2)
     {
         printf("Please enter 1 or 2\n");
-        // scanf("%d", &choice);
         choice = getchar();
     }
 
@@ -65,9 +89,6 @@ void encode (Image *img)
                 appendString(&input,val);
             }
     }
-
-
-
 
     INIT_STRING(bin);
 
@@ -121,10 +142,6 @@ void encode (Image *img)
         }
 
         // green
-        // The next point is the color of the mature caterpillars, some of which are brown. This probably makes the caterpillar even more conspicuous among the green leaves than would otherwise be the case. Let us see, then, whether the habits of the insect will throw any light upon the riddle. What would you do if you were a big caterpillar? Why, like most other defenseless creatures, you would feed by night, and lie concealed by day. So do these caterpillars. When the morning light comes, they creep down the stem of the food plant, and lie concealed among the thick herbage and dry sticks and leaves, near the ground, and it is obvious that under such circumstances the brown color really becomes a protection. It might indeed be argued that the caterpillars, having become brown, concealed themselves on the ground, and that we were reversing the state of things. But this is not so, because, while we may say as a general rule that large caterpillars feed by night and lie concealed by day, it is by no means always the case that they are brown; some of them still retaining the green color. We may then conclude that the habit of concealing themselves by day came first, and that the brown color is a later adaptation.
-
-
-
         if (getStringChar(&bin, j) == '1')
         {
             img->pixels[i / img->head.width][i % img->head.width].green = (img->pixels[i / img->head.width][i % img->head.width].green / 10) * 10;
@@ -163,38 +180,3 @@ void encode (Image *img)
 }
 
 
-
-int Pow(int b, int e) {
-    int output = b;
-
-    if (e == 0) return 1;
-
-    for (int i = 0; e - 1 > i; i++) 
-        output *= b;
-    
-    return output;
-}
-
-char *decode(Image *img) {
-    INIT_STRING(text);
-    int pos = 0;
-
-    short value, c;
-    while (1) {
-        value = 0;
-        // This gets value at each color channel
-        for (int i = 0; 9 > i; i++) {            
-            c = *(&(img->pixels[((pos + i) / 3) / img->head.width]
-                [((pos + i) / 3) % img->head.width].red) + (i % 3)) % 10;
-            if (c != 0) {
-                value += (Pow(2, 9 - i -1));
-                if (c > 1 ) value += 252;
-            }
-        }
-        pos += 9;
-        if (value > 251) break;
-       appendString(&text, (char)(value));
-    }
-
-    return getString(&text);
-}

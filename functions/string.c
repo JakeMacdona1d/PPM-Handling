@@ -1,11 +1,3 @@
-/*************************
-* Thomas Finnegan
-* Jake Macdonald
-* CPSC 2310 Section 003
-* Emails: gtfinne@clemson.edu 
-          jpmacdo@clemson.edu
-*************************/
-
 #include "../headers/string.h"
 
 void resizeString(String *text) {
