@@ -53,6 +53,8 @@ char *chartobin (char c)
     return bin;
 }
 
+
+//partner wrote this
 void encode (Image *img)
 {
     int choice = 0;
